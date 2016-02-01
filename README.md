@@ -1,8 +1,8 @@
-# chat_ecv
+chat_ecv
 [View contributors](https://github.com/MarcObvious/chat_ecv/graphs/contributors)
+---
 =====================================
-
-AngularJs chat, built in whit websockets 
+AngularJs chat, built in with websockets 
 
 ### Getting up and running
 1. Clone this repo from `https://github.com/MarcObvious/chat_ecv.git`
