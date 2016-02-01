@@ -11,10 +11,10 @@ AngularJs chat, built in with websockets
 1. Run `gulp prod`
 2. `scp -r build/* entornsupf2016@84.89.136.194:www`
 
-###SillySever savaged from:
-https://github.com/jagenjo/SillyServer.js
+## SillySever savaged from:
+- `https://github.com/jagenjo/SillyServer.js`
 
-###Boilerplate forked from:
-https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate
+## Boilerplate forked from:
+- `https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate`
 
 [View contributors](https://github.com/MarcObvious/chat_ecv/graphs/contributors)
