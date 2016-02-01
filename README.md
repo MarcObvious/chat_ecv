@@ -2,6 +2,9 @@
 
 AngularJs chat, built in with websockets 
 
+### Live example
+- `http://84.89.136.194/students/entornsupf2016/`
+
 ### Getting up and running
 1. Clone this repo from `https://github.com/MarcObvious/chat_ecv.git`
 2. Run `npm install`
