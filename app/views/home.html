@@ -10,11 +10,11 @@
                     <div class="form-group input-group">
                         <input type="text" class="form-control" placeholder="Enter the IP:Port" ng-model="home.config.ip">
                          <span class="input-group-btn">
-                                <button class="btn btn-default btn-primary" type="button" ng-click="home.connect()"><i class="glyphicon glyphicon-cloud"></i></button>
+                                <button class="btn btn-default btn-success" type="button" ng-click="home.connect()" tooltip="Connect"><i class="glyphicon glyphicon glyphicon-ok-circle"></i></button>
                             </span>
                         <input type="text" class="form-control" placeholder="Enter the Room Name" ng-model="home.config.room">
                             <span class="input-group-btn">
-                                <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()"><i class="glyphicon glyphicon-floppy-remove"></i></button>
+                                <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()" tooltip="Disconnect"><i class="glyphicon glyphicon-remove-circle"></i></button>
                             </span>
                     </div>
                 </form>
@@ -22,7 +22,7 @@
                     <span class="input-group-addon">@</span>
                     <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
                             <span class="input-group-btn">
-                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
                             </span>
                 </div>
                 </form>
@@ -42,7 +42,7 @@
                         <span class="input-group-addon">@</span>
                         <input type="text" class="form-control" placeholder="User to send" ng-model="home.data.sendTo">
                             <span class="input-group-btn">
-                                <button class="btn btn-default btn-success" type="button" ng-click="home.sendText()"><i class="glyphicon glyphicon-send"></i></button>
+                                <button class="btn btn-default btn-success" type="button" ng-click="home.sendText()" tooltip="Send Text"><i class="glyphicon glyphicon-send"></i></button>
                             </span>
                     </div>
                 </form>
@@ -56,7 +56,7 @@
             <div class="panel-heading">Timeline</div>
             <div class="panel-body">
                 <textarea id="data_text" class="form-control" rows="5"  ng-model="home.data.text"></textarea>
-                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh"></i></button>
+                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh" tooltip="Reload"></i></button>
             </div>
         </div>
     </div>
