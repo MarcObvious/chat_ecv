@@ -1,5 +1,5 @@
 const AppSettings = {
-  appTitle: 'MarcObvious Portfolio',
+  appTitle: 'Chat Ecv',
   apiUrl: '84.89.136.194'
 };
 
