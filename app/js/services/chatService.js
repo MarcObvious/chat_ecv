@@ -35,7 +35,7 @@ function ChatService($http) {
 
     };
 
-    service.connect = function(url, room_name, on_connect, on_message, on_close) {
+    service.connect = function(url, room_name, on_connect, on_message, on_close, on_event) {
             room_name = room_name || "";
             var that = this;
             this.url = url;
@@ -92,7 +92,7 @@ function ChatService($http) {
                     console.log("Received: " + msg.data); //Awesome!
                 }
                 else{
-                    that.onServerEvent(tokens[0], tokens[1], msg.data.substr(tokens[0].length + tokens[1].length + 2, msg.data.length), on_message);
+                    that.onServerEvent(tokens[0], tokens[1], msg.data.substr(tokens[0].length + tokens[1].length + 2, msg.data.length), on_message, on_event);
                 }
             };
 
@@ -115,7 +115,7 @@ function ChatService($http) {
     };
 
 //Process events
-    service.onServerEvent = function (author_id, cmd, data, on_message) {
+    service.onServerEvent = function (author_id, cmd, data, on_message, on_event) {
         if (cmd === "MSG") //user message received
         {
             if (on_message) {
@@ -135,12 +135,19 @@ function ChatService($http) {
                     this.on_user_connected(author_id, data);
                 }
             }
+            if (on_event) {
+                on_event("LOGIN", name);
+            }
+
         }
         else if (cmd === "LOGOUT") //user leaving
         {
+            var aux = '';
             if (this.clients[author_id]) {
                 console.log("User disconnected: " + this.clients[author_id].name);
+                aux = this.clients[author_id].name
             }
+
             if (this.on_user_disconnected) {//somebody else is connected
                 this.on_user_disconnected(author_id);
             }
@@ -148,6 +155,9 @@ function ChatService($http) {
             var pos = this.room.clients.indexOf(author_id);
             if (pos !== -1) {
                 this.room.clients.splice(pos, 1);
+            }
+            if (on_event && aux !== '') {
+                on_event("LOGOUT", aux);
             }
         }
         else if (cmd === "ID") //retrieve your user id
@@ -165,6 +175,9 @@ function ChatService($http) {
             this.room = room_info;
             if (this.on_room_info) {
                 this.on_room_info(room_info);
+            }
+            if (on_event) {
+                on_event("INFO", 'user_'+author_id);
             }
         }
     };

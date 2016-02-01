@@ -33,10 +33,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">Send Something!</div>
             <div class="panel-body">
-                <form role="form">
+                <form role="form" ng-submig="home.sendText()">
                     <div class="form-group input-group">
                         <span class="input-group-addon">T</span>
-                        <input type="text" class="form-control" placeholder="Text to send" ng-model="home.data.textToSend">
+                        <input type="text" class="form-control" ng-keyup="$event.keyCode == 13 && home.sendText()" placeholder="Text to send" ng-model="home.data.textToSend">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon">@</span>
@@ -55,7 +55,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Timeline</div>
             <div class="panel-body">
-                <textarea class="form-control" rows="5"  ng-model="home.data.text"></textarea>
+                <textarea id="data_text" class="form-control" rows="5"  ng-model="home.data.text"></textarea>
                 <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh"></i></button>
             </div>
         </div>

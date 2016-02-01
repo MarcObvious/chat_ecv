@@ -1,5 +1,6 @@
 function HomeCtrl($log, ChatService, $scope) {
     'ngInject';
+    'luegg.directives';
 
     // ViewModel
     const vm = this;
@@ -16,6 +17,7 @@ function HomeCtrl($log, ChatService, $scope) {
 
         vm.data.textToSend = '';
         vm.data.text = '';
+        vm.data.events = '';
         vm.data.sendTo = 'ALL';
 
         ChatService.new();
@@ -30,18 +32,22 @@ function HomeCtrl($log, ChatService, $scope) {
             ChatService.connect( vm.config.ip, vm.config.room,
                 function(){
                     $log.debug('Connect..');
-                    $log.debug(ChatService.user_name);
-                    vm.data.name = ChatService.user_name;
-                    $scope.$apply();
                 },
                 function (id, message) {
                     $log.debug('Message rebut');
                     $log.debug(id + ': ' + message);
-                    vm.data.text += id + ': ' + message + '\n';
+                    vm.data.text= id + ': ' + message + '\n';
                     $scope.$apply();
                 },
                 function() {
                     $log.debug('Close');
+                },
+                function(event, data) {
+                    if (event === 'LOGIN') {
+                        vm.data.name = ChatService.user_name;
+                    }
+                    vm.data.events += event + ': ' + data +'\n';
+                    $scope.$apply();
                 }
             );
         }
