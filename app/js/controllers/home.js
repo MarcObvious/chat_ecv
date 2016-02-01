@@ -1,6 +1,5 @@
 function HomeCtrl($log, ChatService, $scope) {
     'ngInject';
-    'luegg.directives';
 
     // ViewModel
     const vm = this;
