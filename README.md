@@ -1,4 +1,5 @@
 # chat_ecv
+[View contributors](https://github.com/MarcObvious/chat_ecv/graphs/contributors)
 =====================================
 
 AngularJs chat, built in whit websockets 
