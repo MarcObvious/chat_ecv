@@ -6,23 +6,21 @@ function HomeCtrl($log, ChatService, $scope) {
 
     var init = function () {
         vm.title = 'ECV - Chat';
-        vm.data = {};
-        vm.data.name = '';
 
         vm.config = {};
         vm.config.connected = false;
         vm.config.ip = '84.89.136.194:9000';
         vm.config.room = 'CHAT';
 
+        vm.data = {};
+        vm.data.name = '';
         vm.data.textToSend = '';
         vm.data.text = '';
         vm.data.events = '';
         vm.data.sendTo = 'ALL';
 
         ChatService.new();
-
         vm.connect();
-
     };
 
     vm.connect = function () {
@@ -54,18 +52,12 @@ function HomeCtrl($log, ChatService, $scope) {
             $log.debug("No Room!");
         }
     };
+
     vm.disconnect = function () {
         if(vm.config.connected) {
             ChatService.close();
             vm.config.connected = false;
         }
-    };
-
-
-    vm.dummy = function () {
-        $log.debug(ChatService.user_name);
-        vm.data.name = ChatService.user_name;
-        vm.config.connected = true;
     };
 
     vm.saveLogin = function () {
@@ -94,7 +86,6 @@ function HomeCtrl($log, ChatService, $scope) {
     };
 
     init();
-
 }
 
 export default {

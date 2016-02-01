@@ -145,7 +145,7 @@ function ChatService($http) {
             var aux = '';
             if (this.clients[author_id]) {
                 console.log("User disconnected: " + this.clients[author_id].name);
-                aux = this.clients[author_id].name
+                aux = this.clients[author_id].name;
             }
 
             if (this.on_user_disconnected) {//somebody else is connected
@@ -213,7 +213,7 @@ function ChatService($http) {
         }
         var req = new XMLHttpRequest();
         req.open('GET', "http://" + this.url + "/data?action=set&key=" + key + ((value !== undefined && value !== null) ? "&value=" + value : ""), true);
-        req.onreadystatechange = function (aEvt) {
+        req.onreadystatechange = function () {
             if (req.readyState === 4) {
                 if (req.status !== 200) {
                     return console.error("Error setting data: ", req.responseText);

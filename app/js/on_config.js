@@ -9,12 +9,6 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
             controller: 'HomeCtrl as home',
             templateUrl: 'home.html',
             title: 'Home'
-        })
-        .state('Home2', {
-            url: '/home2',
-            controller: 'Example2Ctrl as home2',
-            templateUrl: 'home2.html',
-            title: 'Home2'
         });
 
     $urlRouterProvider.otherwise('/');
