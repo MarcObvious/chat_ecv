@@ -1,6 +1,6 @@
 const AppSettings = {
   appTitle: 'MarcObvious Portfolio',
-  apiUrl: '/api/v1'
+  apiUrl: '84.89.136.194'
 };
 
 export default AppSettings;

@@ -1,8 +1,6 @@
 <div>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{home.title}}</h1>
-        </div>
+    <div class="col-lg-12">
+        <h1 class="page-header">{{home.title}}</h1>
     </div>
     <div class="col-lg-6 col-sm-12" id="log-in">
         <div class="panel panel-default">
@@ -10,57 +8,79 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="form-group input-group">
-                        <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
+                        <input type="text" class="form-control" placeholder="Enter the IP:Port" ng-model="home.config.ip">
+                         <span class="input-group-btn">
+                                <button class="btn btn-default btn-primary" type="button" ng-click="home.connect()"><i class="glyphicon glyphicon-cloud"></i></button>
+                            </span>
+                        <input type="text" class="form-control" placeholder="Enter the Room Name" ng-model="home.config.room">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="home.saveLogin()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                                <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()"><i class="glyphicon glyphicon-floppy-remove"></i></button>
                             </span>
                     </div>
+                </form>
+                <div class="form-group input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                            </span>
+                </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-6 col-sm-12" id="register">
         <div class="panel panel-default">
-            <div class="panel-heading">Send Text!</div>
+            <div class="panel-heading">Send Something!</div>
             <div class="panel-body">
                 <form role="form">
                     <div class="form-group input-group">
                         <span class="input-group-addon">T</span>
                         <input type="text" class="form-control" placeholder="Text to send" ng-model="home.data.textToSend">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="User to send" ng-model="home.data.sendTo">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="home.sendText()"><i class="glyphicon glyphicon-send"></i></button>
+                                <button class="btn btn-default btn-success" type="button" ng-click="home.sendText()"><i class="glyphicon glyphicon-send"></i></button>
                             </span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
 
-<div class="col-lg-6 col-sm-12" id="line-chart">
-    <div class="panel panel-default">
-        <div class="panel-heading">Timeline</div>
-        <div class="panel-body">
-            <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" ng-model="home.data.text"></textarea>
+
+    <div class="col-lg-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Timeline</div>
+            <div class="panel-body">
+                <textarea class="form-control" rows="5"  ng-model="home.data.text"></textarea>
+                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh"></i></button>
             </div>
-            <button id="reloadButton" class="btn btn-default" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh"></i></button>
         </div>
     </div>
-</div>
 
-<div class="col-lg-6 col-sm-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">Authors:</div>
-        <div class="panel-body">
-            <h4>Marc Mateu</h4>
-            <h4>Ignasi Larroca</h4>
+    <div class="col-lg-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Events</div>
+            <div class="panel-body">
+                <textarea class="form-control" rows="5" ng-model="home.data.events"></textarea>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="col-lg-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Authors:</div>
+            <div class="panel-body">
+                <h4>Marc Mateu</h4>
+                <h4>Ignasi Larroca</h4>
+            </div>
+        </div>
+    </div>
 
 
 </div>
 
-</div>
+
