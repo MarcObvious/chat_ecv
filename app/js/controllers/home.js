@@ -35,7 +35,7 @@ function HomeCtrl($log, ChatService, $scope) {
                 function (id, message) {
                     $log.debug('Message rebut');
                     $log.debug(id + ': ' + message);
-                    vm.data.text= id + ': ' + message + '\n';
+                    vm.data.text += id + ': ' + message + '\n';
                     $scope.$apply();
                 },
                 function() {
