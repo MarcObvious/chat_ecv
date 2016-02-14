@@ -5,6 +5,7 @@ import onConfig  from './on_config';
 import onRun     from './on_run';
 import 'angular-ui-router';
 import 'angular-bootstrap';
+import 'three-js';
 import './templates';
 import './filters';
 import './controllers';
