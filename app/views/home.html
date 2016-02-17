@@ -1,8 +1,8 @@
 <div>
-    <div class="col-lg-12">
-        <h1 class="page-header">{{home.title}}</h1>
-    </div>
-    <div class="col-lg-6 col-sm-12" id="log-in">
+    <!--<div class="col-lg-12">
+        <h3 class="page-header">{{home.title}}</h3>
+    </div>-->
+    <div class="col-lg-6 col-sm-6 col-sm-12" id="log-in">
         <div class="panel panel-default">
             <div class="panel-heading">Log in as:</div>
             <div class="panel-body">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12" id="register">
+    <div class="col-lg-6 col-sm-6  col-sm-12" id="register">
         <div class="panel panel-default">
             <div class="panel-heading">Send Something!</div>
             <div class="panel-body">
@@ -51,26 +51,40 @@
     </div>
 
 
-    <div class="col-lg-6 col-sm-12">
+    <div class="col-lg-6 col-sm-6  col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">Timeline</div>
             <div class="panel-body">
                 <textarea id="data_text" class="form-control" rows="5"  ng-model="home.data.text"></textarea>
-                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh" tooltip="Reload"></i></button>
+
             </div>
         </div>
-    </div>
-
-    <div class="col-lg-6 col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">Events</div>
             <div class="panel-body">
+                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh" tooltip="Reload"></i></button>
+                <button class="btn btn-default btn-warning" ng-click="home.reload()"><i class="glyphicon glyphicon-info-sign" tooltip="Reload"></i></button>
+                <button class="btn btn-default btn-success" ng-click="home.addSat()"><i class="glyphicon glyphicon-plus" tooltip="add Sat"></i></button>
+                <button class="btn btn-default btn-danger" ng-click="home.reload()"><i class="glyphicon glyphicon-trash" tooltip="Remove"></i></button>
+                <br><br>
                 <textarea class="form-control" rows="5" ng-model="home.data.events"></textarea>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-6 col-sm-12">
+    <div class="col-lg-6 col-sm-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Scene:</div>
+            <div class="panel-body">
+
+                <div class="scene-box">
+                    <scene-directive width="home.scene.canvasWidth" height="home.scene.canvasHeight" sat="home.scene.sat"></scene-directive>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-6 col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">Authors:</div>
             <div class="panel-body">
@@ -79,7 +93,6 @@
             </div>
         </div>
     </div>
-
 
 </div>
 

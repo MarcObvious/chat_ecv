@@ -16,7 +16,8 @@ export default {
   },
 
   scripts: {
-    src: 'app/js/**/*.js',
+    src:
+      'app/js/**/*.js',
     dest: 'build/js'
   },
 
