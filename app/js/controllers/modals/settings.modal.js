@@ -1,4 +1,4 @@
-function SettingsModalCtrl($log) {
+function SettingsModalCtrl() {
     'ngInject';
 
     // ViewModel
@@ -9,8 +9,6 @@ function SettingsModalCtrl($log) {
     };
 
     init();
-   // console.log(match);
-
 }
 
 export default {

@@ -19,10 +19,13 @@
         <div class="form-group input-group">
             <span class="input-group-addon">@</span>
             <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
-                            </span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                    </span>
         </div>
         </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-md upper" ng-click="modalInstance.dismiss()"><i class="glyphicon glyphicon-ok"></i> Apply</button>
     </div>
 </div>

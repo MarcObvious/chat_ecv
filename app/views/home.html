@@ -3,7 +3,10 @@
 
     <div class="col-lg-3 col-sm-3  col-sm-3">
         <accordion close-others="true">
-            <accordion-group   heading="Twitter trends" is_open="true">
+            <accordion-group is_open="home.status.trends">
+                <accordion-heading>
+                    Twitter trends <strong>#</strong> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': home.status.trends, 'glyphicon-chevron-right': !home.status.trends}"></i>
+                </accordion-heading>
                 <twitter-timeline country="home.twitter.country" topic="home.twitter.topicc" trends="home.twitter.trends"></twitter-timeline>
                 <hr>
                 <form role="form" ng-submig="home.sendText()">
@@ -18,7 +21,6 @@
 
     </div>
 
-
     <div class="col-lg-6 col-sm-6 col-sm-6">
         <div class="panel panel-default" style="visibility:hidden;">
             <div class="panel-heading">Scene</div>
@@ -29,7 +31,10 @@
     <div class="col-lg-3 col-sm-3  col-sm-3">
 
         <accordion close-others="true">
-            <accordion-group   heading="Chat" is_open="true">
+            <accordion-group is_open="home.status.chat">
+            <accordion-heading>
+                Chat <i class="glyphicon glyphicon-send"></i><i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': home.status.chat, 'glyphicon-chevron-right': !home.status.chat}"></i>
+            </accordion-heading>
 
                 <textarea id="data_text" class="form-control" rows="15"  ng-model="home.data.text"></textarea>
                 <hr>
@@ -51,47 +56,7 @@
                 <button class="btn btn-default btn-danger" ng-click="home.reload()"><i class="glyphicon glyphicon-trash" tooltip="Remove"></i></button>
             </accordion-group>
         </accordion>
-
-
-
-        <!--<div class="col-lg-6 col-sm-6 col-sm-6" id="log-in">
-            <div class="panel panel-default">
-                <div class="panel-heading">Log in as:</div>
-                <div class="panel-body">
-                    <form role="form">
-                        <div class="form-group input-group">
-                            <input type="text" class="form-control" placeholder="Enter the IP:Port" ng-model="home.config.ip">
-                             <span class="input-group-btn">
-                                    <button class="btn btn-default btn-success" type="button" ng-click="home.connect()" tooltip="Connect"><i class="glyphicon glyphicon glyphicon-ok-circle"></i></button>
-                                </span>
-                            <input type="text" class="form-control" placeholder="Enter the Room Name" ng-model="home.config.room">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()" tooltip="Disconnect"><i class="glyphicon glyphicon-remove-circle"></i></button>
-                                </span>
-                        </div>
-                    </form>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
-                            </span>
-                    </div>
-                    </form>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-3 col-sm-3 col-sm-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">Authors:</div>
-                <div class="panel-body">
-                    <h4>Marc Mateu</h4>
-                    <h4>Ignasi Larroca</h4>
-                </div>
-            </div>
-        </div>-->
     </div>
+</div>
 
 

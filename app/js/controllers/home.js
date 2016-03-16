@@ -20,6 +20,12 @@ function HomeCtrl($log, ChatService, TwitterService, $modal, $scope) {
         vm.data.events = '';
         vm.data.sendTo = 'ALL';
 
+        vm.status = {};
+        vm.status = {
+            chat: true,
+            trends: true,
+        };
+
         vm.scene = {};
         vm.scene.sat = {};
 
