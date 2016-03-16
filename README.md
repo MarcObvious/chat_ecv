@@ -9,7 +9,7 @@ The Twitter timeline is placed in the directive `twitterTimeline`,
 The connexion with our API is done by the service `twitterService` and the connexion with the 'Chat' server is done by the service `chatService`.
 We don't have direct connection to Twitter, we will recover the data through our API.
 
-## Boilerplate forked from:
+## API
 - `https://github.com/MarcObvious/chat_ecv_api`
 
 ### Live example
