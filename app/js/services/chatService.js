@@ -183,7 +183,7 @@ function ChatService($http) {
     };
 
 //target_ids is optional, if not specified the message is send to all
-    service.sendMessage = function (msg, sat, target_ids) {
+    service.sendMessage = function (msg, target_ids) {
         if (msg === null) {
             return;
         }

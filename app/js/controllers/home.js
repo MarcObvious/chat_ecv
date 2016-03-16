@@ -1,4 +1,4 @@
-function HomeCtrl($log, ChatService, $scope) {
+function HomeCtrl($log, ChatService, TwitterService, $modal, $scope) {
     'ngInject';
 
     // ViewModel
@@ -15,56 +15,26 @@ function HomeCtrl($log, ChatService, $scope) {
         vm.data = {};
         vm.data.name = '';
         vm.data.textToSend = '';
+        vm.data.textToPost = '';
         vm.data.text = '';
         vm.data.events = '';
         vm.data.sendTo = 'ALL';
 
         vm.scene = {};
         vm.scene.sat = {};
-        vm.scene.canvasWidth = 400;
-        vm.scene.canvasHeight = 400;
+
         ChatService.new();
-        vm.satelit = {
-            geometry: (Math.random()*(2-0.2)+0.8),
-            color: getRandomColor(),
-            castShadow : true,
-            name : vm.data.name,
-            position: {
-                x : (Math.random()*(50-30)+30) ,
-                y : 0,
-                z : 0
-            },
-            speed : Math.round((Math.random()*(100-0.01)+0.05))/100
+
+        vm.twitter = {
+            country: 'WorldWide',
+            topicc: '#something',
+            trends: []
         };
-        vm.satelit.distX = vm.satelit.position.x;
-        vm.satelit.distY = vm.satelit.position.y;
-        vm.satelit.distZ = vm.satelit.position.z;
+        console.log(vm.twitter);
 
         vm.connect();
     };
 
-    function getRandomColor(){
-        var color = "black";
-        var c = Math.random()*6;
-        if (c > 5) color = "red";
-        if (c <= 5 && c > 4) color = "blue";
-        if (c <= 4 && c > 3) color = "green";
-        if (c <= 3 && c > 2) color = "yellow";
-        if (c <= 2 && c > 1) color = "white";
-        if (c <= 1) color = "purple";
-        return color;
-    }
-
-    vm.addSat = function (sat) {
-        vm.scene.sat = sat;
-    };
-
-    vm.removeSat = function (id) {
-        console.log('Removing sat: ' + id);
-        if (typeof id !== 'undefined') {
-            delete  vm.scene.sat[id];
-        }
-    };
 
     vm.connect = function () {
         vm.disconnect();
@@ -74,11 +44,13 @@ function HomeCtrl($log, ChatService, $scope) {
                     $log.debug('Connect..');
                 },
                 function (id, message) {
+                    console.log(message);
                     var aux = JSON.parse(message);
                     $log.debug('Message rebut');
                     $log.debug(id + ': ' + aux.msg);
-                    vm.data.text += id + ': ' + aux.msg + '\n';
-                    vm.addSat(aux.sat);
+                    var tmp = vm.data.text;
+                    vm.data.text = id  + aux.msg + '\n' + tmp;
+                    // vm.addSat(aux.sat);
                     $scope.$apply();
                 },
                 function() {
@@ -87,13 +59,13 @@ function HomeCtrl($log, ChatService, $scope) {
                 function(event, data) {
                     if (event === 'LOGIN') {
                         vm.data.name = ChatService.user_name;
-                        vm.satelit.name = ChatService.user_name;
-                        //vm.addSat(data);
                     }
                     if (event === 'LOGOUT') {
-                        vm.removeSat(data);
+                        console.log('LOGOUT!');
+                        // vm.removeSat(data);
                     }
-                    vm.data.events += event + ': ' + data +'\n';
+                    var tmp = vm.data.text;
+                    vm.data.text = event + ': ' + data +'\n' + tmp;
                     $scope.$apply();
                 }
             );
@@ -118,22 +90,77 @@ function HomeCtrl($log, ChatService, $scope) {
 
     vm.sendText = function () {
         $log.debug("sendText: " + vm.data.textToSend);
-        vm.data.text += vm.data.name + ': ' + vm.data.textToSend + '\n';
+        var tmp = vm.data.text;
+        vm.data.text = vm.data.name +  ', at ' + vm.twitter.country + ' says: '  + vm.data.textToSend + '\n' + tmp;
         if(vm.data.sendTo !== 'ALL' && vm.data.sendTo !== '') {
-            ChatService.sendMessage({msg: vm.data.textToSend, sat: vm.satelit}, [vm.data.sendTo]);
+            ChatService.sendMessage({msg: ', at ' + vm.twitter.country + ' says: '+vm.data.textToSend}, [vm.data.sendTo]);
         }
         else {
-            ChatService.sendMessage({msg: vm.data.textToSend, sat: vm.satelit});
+            ChatService.sendMessage({msg: ', at ' + vm.twitter.country + ' says: '+ vm.data.textToSend});
         }
         vm.data.textToSend = '';
-        $log.debug(vm.data.text);
-        vm.addSat(vm.satelit);
     };
+
+    vm.postText = function () {
+        $log.debug("postText: " + vm.data.textToPost);
+        if (vm.data.name){
+            TwitterService.save({id: vm.twitter.country, topic: vm.twitter.topicc,  text: vm.data.textToPost, user_name: vm.data.name}).then(function(result){
+                console.log(result);
+                vm.twitter.trends[0] = result;
+            });
+            var tmp = vm.data.text;
+            vm.data.text = 'EVENT: ' + vm.data.name +' has posted a tweet' + '\n' + tmp;
+
+            ChatService.sendMessage({msg: 'EVENT: user ' + vm.data.name +' is in '+ vm.twitter.country});
+        }
+        vm.data.textToPost = '';
+    };
+
+    $scope.$watch('home.twitter.country', function (change) {
+        if (vm.data.name){
+            var tmp = vm.data.text;
+            vm.data.text = 'EVENT: ' + vm.data.name +' is in '+ vm.twitter.country + '\n' + tmp;
+            ChatService.sendMessage({msg: 'EVENT: user ' + vm.data.name +' is in '+ vm.twitter.country});
+        }
+    });
+
+    $scope.$watch('home.twitter.topicc', function (change) {
+        vm.data.textToPost = vm.twitter.topicc;
+    });
 
     vm.reload = function () {
         $log.debug("reload: " + vm.data.text);
         vm.data.text = '';
     };
+
+    vm.openSettigns = function () {
+        $scope.modalInstance = $modal.open({
+            templateUrl: 'modals/settings.modal.html',
+            controller: 'SettingsModalCtrl as settings',
+            resolve: {
+            },
+            size: 'md',
+            scope: $scope
+        });
+    };
+
+    vm.openInfo = function () {
+        $scope.modalInstance = $modal.open({
+            template: '<div>' +
+            '<div class="modal-header"> ' +
+                '<h3 class="modal-title upper">Authors: </h3>' +
+            '</div>' +
+            '<div class="modal-body row-fluid clearfix"> ' +
+            '   <ul> <li><h4>Marc Mateu, Nia 146756</h4></li> ' +
+            '   <li><h4>Ignasi Larroca</h4></li> </ul>' +
+            '</div></div>',
+            size: 'sm'
+        });
+    };
+
+
+
+
 
     init();
 }

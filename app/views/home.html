@@ -1,38 +1,38 @@
 <div>
-    <!--<div class="col-lg-12">
-        <h3 class="page-header">{{home.title}}</h3>
-    </div>-->
-    <div class="col-lg-6 col-sm-6 col-sm-12" id="log-in">
-        <div class="panel panel-default">
-            <div class="panel-heading">Log in as:</div>
-            <div class="panel-body">
-                <form role="form">
+    <scene-box  width="home.scene.canvasWidth" height="home.scene.canvasHeight" countrie="home.twitter.country"></scene-box>
+
+    <div class="col-lg-3 col-sm-3  col-sm-3">
+        <accordion close-others="true">
+            <accordion-group   heading="Twitter trends" is_open="true">
+                <twitter-timeline country="home.twitter.country" topic="home.twitter.topicc" trends="home.twitter.trends"></twitter-timeline>
+                <hr>
+                <form role="form" ng-submig="home.sendText()">
                     <div class="form-group input-group">
-                        <input type="text" class="form-control" placeholder="Enter the IP:Port" ng-model="home.config.ip">
-                         <span class="input-group-btn">
-                                <button class="btn btn-default btn-success" type="button" ng-click="home.connect()" tooltip="Connect"><i class="glyphicon glyphicon glyphicon-ok-circle"></i></button>
-                            </span>
-                        <input type="text" class="form-control" placeholder="Enter the Room Name" ng-model="home.config.room">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()" tooltip="Disconnect"><i class="glyphicon glyphicon-remove-circle"></i></button>
-                            </span>
+                        <span class="input-group-addon">P</span>
+                        <input type="text" class="form-control" ng-keyup="$event.keyCode == 13 && home.sendText()" placeholder="Text to post" ng-model="home.data.textToPost">
                     </div>
+                    <button class="btn btn-block btn-primary" type="button" ng-click="home.postText()" tooltip="Post Text"><i class="glyphicon glyphicon-retweet"></i> &nbsp Post! &nbsp &nbsp</button>
                 </form>
-                <div class="form-group input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
-                            </span>
-                </div>
-                </form>
-            </div>
+            </accordion-group>
+        </accordion>
+
+    </div>
+
+
+    <div class="col-lg-6 col-sm-6 col-sm-6">
+        <div class="panel panel-default" style="visibility:hidden;">
+            <div class="panel-heading">Scene</div>
+            <div class="panel-body"></div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-6  col-sm-12" id="register">
-        <div class="panel panel-default">
-            <div class="panel-heading">Send Something!</div>
-            <div class="panel-body">
+
+    <div class="col-lg-3 col-sm-3  col-sm-3">
+
+        <accordion close-others="true">
+            <accordion-group   heading="Chat" is_open="true">
+
+                <textarea id="data_text" class="form-control" rows="15"  ng-model="home.data.text"></textarea>
+                <hr>
                 <form role="form" ng-submig="home.sendText()">
                     <div class="form-group input-group">
                         <span class="input-group-addon">T</span>
@@ -41,59 +41,57 @@
                     <div class="form-group input-group">
                         <span class="input-group-addon">@</span>
                         <input type="text" class="form-control" placeholder="User to send" ng-model="home.data.sendTo">
+                    </div>
+                    <button class="btn btn-block btn-success" type="button" ng-click="home.sendText()" tooltip="Send Text"><i class="glyphicon glyphicon-send"></i> &nbsp Send! &nbsp &nbsp</button>
+                </form>
+                <hr>
+                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh" tooltip="Reload"></i></button>
+                <button class="btn btn-default btn-warning" ng-click="home.openInfo()"><i class="glyphicon glyphicon-info-sign" tooltip="Open Info"></i></button>
+                <button class="btn btn-default btn-success" ng-click="home.openSettigns()"><i class="glyphicon glyphicon-wrench" tooltip="Open Settings"></i></button>
+                <button class="btn btn-default btn-danger" ng-click="home.reload()"><i class="glyphicon glyphicon-trash" tooltip="Remove"></i></button>
+            </accordion-group>
+        </accordion>
+
+
+
+        <!--<div class="col-lg-6 col-sm-6 col-sm-6" id="log-in">
+            <div class="panel panel-default">
+                <div class="panel-heading">Log in as:</div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group input-group">
+                            <input type="text" class="form-control" placeholder="Enter the IP:Port" ng-model="home.config.ip">
+                             <span class="input-group-btn">
+                                    <button class="btn btn-default btn-success" type="button" ng-click="home.connect()" tooltip="Connect"><i class="glyphicon glyphicon glyphicon-ok-circle"></i></button>
+                                </span>
+                            <input type="text" class="form-control" placeholder="Enter the Room Name" ng-model="home.config.room">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-danger" type="button" ng-click="home.disconnect()" tooltip="Disconnect"><i class="glyphicon glyphicon-remove-circle"></i></button>
+                                </span>
+                        </div>
+                    </form>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="Enter your name" ng-model="home.data.name">
                             <span class="input-group-btn">
-                                <button class="btn btn-default btn-success" type="button" ng-click="home.sendText()" tooltip="Send Text"><i class="glyphicon glyphicon-send"></i></button>
+                                <button class="btn btn-default btn-primary" type="button" ng-click="home.saveLogin()" tooltip="Save username"><i class="glyphicon glyphicon-floppy-disk"></i></button>
                             </span>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                    </form>
 
-
-    <div class="col-lg-6 col-sm-6  col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">Timeline</div>
-            <div class="panel-body">
-                <textarea id="data_text" class="form-control" rows="5"  ng-model="home.data.text"></textarea>
-
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">Events</div>
-            <div class="panel-body">
-                <button class="btn btn-default btn-primary" ng-click="home.reload()"><i class="glyphicon glyphicon-refresh" tooltip="Reload"></i></button>
-                <button class="btn btn-default btn-warning" ng-click="home.reload()"><i class="glyphicon glyphicon-info-sign" tooltip="Reload"></i></button>
-                <button class="btn btn-default btn-success" ng-click="home.addSat()"><i class="glyphicon glyphicon-plus" tooltip="add Sat"></i></button>
-                <button class="btn btn-default btn-danger" ng-click="home.reload()"><i class="glyphicon glyphicon-trash" tooltip="Remove"></i></button>
-                <br><br>
-                <textarea class="form-control" rows="5" ng-model="home.data.events"></textarea>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6 col-sm-6 col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">Scene:</div>
-            <div class="panel-body">
-
-                <div class="scene-box">
-                    <scene-directive width="home.scene.canvasWidth" height="home.scene.canvasHeight" sat="home.scene.sat"></scene-directive>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-lg-6 col-sm-6 col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">Authors:</div>
-            <div class="panel-body">
-                <h4>Marc Mateu</h4>
-                <h4>Ignasi Larroca</h4>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Authors:</div>
+                <div class="panel-body">
+                    <h4>Marc Mateu</h4>
+                    <h4>Ignasi Larroca</h4>
+                </div>
             </div>
-        </div>
+        </div>-->
     </div>
-
-</div>
 
 

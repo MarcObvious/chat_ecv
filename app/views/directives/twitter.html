@@ -1,0 +1,13 @@
+<div class="twitter-timeline">
+    <p>You are in: <strong>{{country}}</strong></p>
+    <accordion close-others="true">
+        <accordion-group ng-repeat="trend in trends"  heading="{{trend.name}}" is_open="$first" ng-click="saveTopic(trend.name)">
+            <div class="list-group big-list">
+                <a  href="#" ng-repeat="tweet in trend.tweets" class="list-group-item" uib-tooltip="">
+                    <span class="pull-left text-muted small"><em>@{{tweet.user_name}} Says:</em></span>
+                    {{tweet.text}}
+                </a>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>

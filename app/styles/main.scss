@@ -9,3 +9,8 @@ body {
   background-color: $background--light;
   padding: $half-space;
 }
+
+.big-list {
+    max-height: 40vh;
+    overflow-y: auto;
+}
