@@ -40,8 +40,7 @@ function HomeCtrl($log, ChatService, TwitterService, $modal, $scope) {
 
         vm.connect();
     };
-
-
+    
     vm.connect = function () {
         vm.disconnect();
         if(vm.config.room !== '' && vm.config.ip !== '') {
@@ -158,7 +157,8 @@ function HomeCtrl($log, ChatService, TwitterService, $modal, $scope) {
             '</div>' +
             '<div class="modal-body row-fluid clearfix"> ' +
             '   <ul> <li><h4>Marc Mateu, Nia 146756</h4></li> ' +
-            '   <li><h4>Ignasi Larroca</h4></li> </ul>' +
+            '   <li><h4>Ignasi Larroca, Nia 158633</h4></li>' +
+            '   <li><h4>Sergi Subirats, Nia 160403</h4></li> </ul>' +
             '</div></div>',
             size: 'sm'
         });
